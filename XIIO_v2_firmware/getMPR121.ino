@@ -2,6 +2,52 @@ int getMPR121() {
 
   uint16_t MPR121_DATA = cap.touched();
 
+//filtered data from all keys - for aftertouch etc
+  uint16_t filtered_data = cap.filteredData(8);
+
+  platesFilteredData[0] = cap.filteredData(8);
+  platesFilteredData[1] = cap.filteredData(7);
+  platesFilteredData[2] = cap.filteredData(5);
+  platesFilteredData[3] = cap.filteredData(3);
+
+  platesFilteredData[4] = cap.filteredData(10);
+  platesFilteredData[5] = cap.filteredData(11);
+  platesFilteredData[6] = cap.filteredData(4);
+  platesFilteredData[7] = cap.filteredData(0);
+
+  platesFilteredData[8] = cap.filteredData(6);
+  platesFilteredData[9] = cap.filteredData(9);
+  platesFilteredData[10] = cap.filteredData(1);
+  platesFilteredData[11] = cap.filteredData(2);
+
+
+/*
+  Serial.print("filtered data: ");
+  Serial.print(platesFilteredData[0]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[1]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[2]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[3]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[4]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[5]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[6]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[7]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[8]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[9]);
+  Serial.print(", ");
+  Serial.print(platesFilteredData[10]);
+  Serial.print(", ");
+  Serial.println(platesFilteredData[11]);
+*/
+
   /*
     (00)(01)(02)(03)
     (08)(09)(10)(11) <- notePlates
