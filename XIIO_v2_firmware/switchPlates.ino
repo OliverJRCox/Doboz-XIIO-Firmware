@@ -64,9 +64,11 @@ void switchPlates() {
         case cv_switch:
           if (switchPlateRead[i]) {
             switch0cv = platesFilteredData[2];
+            doChange = 1;
           }
           else {
             switch0cv = platesFilteredData[notePlatesLast];
+            doChange = 1;
           }
         break;
     }
@@ -80,12 +82,23 @@ void switchPlates() {
 
     // do outputs if change happened
     if (doChange == 1) {
-      if (switchPlateStatus[0] == 0) {
-        switch0low;
+      if (switchPlateBehavior[0] != cv_switch) {
+        if (switchPlateStatus[0] == 0) {
+          switch0low;
+          switch0cv = 0;
+        }
+
+        if (switchPlateStatus[0] == 1) {
+          switch0high;
+          switch0cv = 254;
+        }
+        
+        else {
+          //write a CV value to SW0
+        }
       }
-      if (switchPlateStatus[0] == 1) {
-        switch0high;
-      }
+      
+
       if (switchPlateStatus[1] == 0) {
         switch1low;
       }
