@@ -92,10 +92,9 @@ void switchPlates() {
           switch0high;
           switch0cv = 254;
         }
-        
-        else {
-          //write a CV value to SW0
-        }
+      }
+      else {
+        //outputCV();
       }
       
 
