@@ -269,7 +269,7 @@ void setup() {
   leds[3] = 0;
   FastLED.show();
   brightness = EEPROM.read(1022);
-  ahoj();
+  howdy();
 
   SPI.begin();
 
@@ -361,7 +361,7 @@ void xiioBegin() {
   TIMSK1 = 0x0;
 }
 
-void ahoj() {
+void howdy() {
   uint8_t dtime = 40;
 
   leds[3] = 0xFF;
@@ -370,13 +370,13 @@ void ahoj() {
   leds[0] = 0xFF;
 
   for (int i = 0; i < 4; i++) {
-    leds[i] = LED_BLUE;
+    leds[i] = LED_YELLOW;
     FastLED.show();
     delay(dtime);
   }
 
   for (int i = 0; i < 4; i++) {
-    leds[i] = LED_BLUE_LOW;
+    leds[i] = LED_GREEN_LOW;
     FastLED.show();
     delay(dtime);
   }
