@@ -34,7 +34,6 @@ int getNote() {
         doTriggerFunction(1);
         
         
-        */
       }
       break;
 

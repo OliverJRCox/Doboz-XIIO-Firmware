@@ -62,12 +62,12 @@ void switchPlates() {
         // CV switch mode - addressing this with PWM. If switch is pressed, output CV 
         // directly from that key. If not, look for last key pressed on keyboard.
         case cv_switch:
-          if (switchPlateRead[i]) {
-            switch0cv = platesFilteredData[2];
+          if (switchPlateRead[i] == 1) {
+            switch0cv = platesFilteredData[11];
             doChange = 1;
           }
           else {
-            switch0cv = platesFilteredData[notePlatesLast];
+            switch0cv = 255 - platesFilteredData[activeNote];
             doChange = 1;
           }
         break;
@@ -96,7 +96,7 @@ void switchPlates() {
       else {
         //outputCV();
         Serial.println(activeNote);
-        Serial.println(255 - platesFilteredData[activeNote]);
+        Serial.println(switch0cv);
       }
       
 
