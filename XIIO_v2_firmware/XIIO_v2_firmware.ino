@@ -156,6 +156,8 @@ bool switchPlateLast [] = {0, 0};
 bool switchPlateStatus [] = {0, 0};
 uint32_t switchPlateTriggerTime [] = {0, 0};
 
+uint8_t platesFilteredData[12];
+
 uint16_t glideStop = 0;  // the note to which we are gliding
 uint16_t glideNote = 0;  // the current note, while gliding
 bool glideDirection = 0;
