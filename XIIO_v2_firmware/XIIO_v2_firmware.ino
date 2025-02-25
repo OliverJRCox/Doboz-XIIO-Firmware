@@ -100,6 +100,7 @@ bool triggerState = 0;
 uint32_t triggerTime = 0;
 
 // switch 0
+uint8_t switch0cv;
 #define switch0pin 8 // PB0
 #define switch0high PORTB &= ~_BV(PB0)
 #define switch0low PORTB |= _BV(PB0)
@@ -151,6 +152,7 @@ uint8_t switchPlateBehavior [] = {0, 0};
 #define momentary_switch 0
 #define trigger_switch 1
 #define latching_switch 2
+#define cv_switch 3
 bool switchPlateRead [] = {0, 0};
 bool switchPlateLast [] = {0, 0};
 bool switchPlateStatus [] = {0, 0};

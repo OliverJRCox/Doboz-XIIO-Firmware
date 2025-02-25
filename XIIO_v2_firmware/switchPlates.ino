@@ -58,6 +58,17 @@ void switchPlates() {
           switchPlateStatus[0] = freeze;
         }
         break;
+
+        // CV switch mode - addressing this with PWM. If switch is pressed, output CV 
+        // directly from that key. If not, look for last key pressed on keyboard.
+        case cv_switch:
+          if (switchPlateRead[i]) {
+            switch0cv = platesFilteredData[2];
+          }
+          else {
+            switch0cv = platesFilteredData[notePlatesLast];
+          }
+        break;
     }
 
     // refresh LEDs if change happened

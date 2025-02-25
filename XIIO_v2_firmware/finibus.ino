@@ -1,15 +1,15 @@
-int finibus(int16_t subiectus, int16_t infernum, int16_t coelum){
+int finibus(int16_t subject, int16_t basenumber, int16_t topnumber){
   // max
-  if (subiectus > coelum){
-    return coelum;
+  if (subject > topnumber){
+    return topnumber;
   }
 
   // min
-  if (subiectus < infernum){
-    return infernum;
+  if (subject < basenumber){
+    return basenumber;
   }
 
-  return subiectus;
+  return subject;
 }
 
 
