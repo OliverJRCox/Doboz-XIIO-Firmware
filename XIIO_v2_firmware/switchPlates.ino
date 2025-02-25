@@ -95,6 +95,8 @@ void switchPlates() {
       }
       else {
         //outputCV();
+        Serial.println(activeNote);
+        Serial.println(255 - platesFilteredData[activeNote]);
       }
       
 

@@ -32,6 +32,9 @@ int getNote() {
       if (doNote) {
         doNoteFunction(notes[activeNote] + octave);
         doTriggerFunction(1);
+        
+        
+        */
       }
       break;
 
@@ -120,8 +123,7 @@ int getNote() {
   
   notePlatesLast = notePlates;
 
-  Serial.print("Note Plate: ");
-  Serial.print(notePlatesLast);
-  Serial.print(" :::: Value: ");
-  Serial.print(platesFilteredData[255-notePlatesLast]);
+
+ 
+
 }

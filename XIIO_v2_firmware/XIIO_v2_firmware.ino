@@ -275,6 +275,8 @@ void setup() {
 
   SPI.begin();
 
+  Serial.begin(115200);
+
   // initialize MPR121 library
   cap.begin(0x5A);
   //cap.setThreshholds(0x0F, 0x0A);
@@ -347,7 +349,6 @@ void loop() {
     doChange = 1;
   }
 
-
   // refresh LEDs if change happened
   if (doChange) {
     doLeds();
@@ -364,7 +365,7 @@ void xiioBegin() {
 }
 
 void howdy() {
-  uint8_t dtime = 40;
+  uint8_t dtime = 80;
 
   leds[3] = 0xFF;
   leds[2] = 0xFF;
