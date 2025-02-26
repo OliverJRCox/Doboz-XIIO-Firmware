@@ -60,8 +60,7 @@ void settings(int8_t vari) {
       // 0 -> momentary
       // 1 -> trigger
       // 2 -> latching
-      // 3 - > CV MODE WOO
-      switchPlateBehavior [0] = finibus ((switchPlateBehavior [0] + vari), 0, 3);
+      switchPlateBehavior [0] = finibus ((switchPlateBehavior [0] + vari), 0, 2);
       if (enableFreeze && mode) {
         switchPlateBehavior [0] = 2;
       }
@@ -73,7 +72,9 @@ void settings(int8_t vari) {
       // 0 -> momentary
       // 1 -> trigger
       // 2 -> latching
-      switchPlateBehavior [1] = finibus ((switchPlateBehavior [1] + vari), 0, 2);
+      // 3 - > CV MODE WOO
+
+      switchPlateBehavior [1] = finibus ((switchPlateBehavior [1] + vari), 0, 3);
       if (arpGlide && mode) {
         switchPlateBehavior [1] = 0;
       }

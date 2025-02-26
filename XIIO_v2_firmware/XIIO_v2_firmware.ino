@@ -100,15 +100,15 @@ bool triggerState = 0;
 uint32_t triggerTime = 0;
 
 // switch 0
-uint8_t switch0cv;
 #define switch0pin 8 // PB0
 #define switch0high PORTB &= ~_BV(PB0)
 #define switch0low PORTB |= _BV(PB0)
 
 // switch 1
+uint8_t switch1cv;
 #define switch1pin 6 // PD6
-#define switch1high PORTD &= ~_BV(PD6)
-#define switch1low PORTD |= _BV(PD6)
+//#define switch1high PORTD &= ~_BV(PD6)
+//#define switch1low PORTD |= _BV(PD6)
 
 // clock input
 #define clockPin A3 // PC3
@@ -324,6 +324,9 @@ void loop() {
   getMPR121();
   encoder();
   switchPlates();
+  
+  analogWrite(6,switch1cv);
+
   switch (mode) {
     case keyboard:
       break;

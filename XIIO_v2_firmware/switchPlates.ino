@@ -63,11 +63,11 @@ void switchPlates() {
         // directly from that key. If not, look for last key pressed on keyboard.
         case cv_switch:
           if (switchPlateRead[i] == 1) {
-            switch0cv = platesFilteredData[11];
+            switch1cv = platesFilteredData[12];
             doChange = 1;
           }
           else {
-            switch0cv = 255 - platesFilteredData[activeNote];
+            switch1cv = 255 - platesFilteredData[activeNote];
             doChange = 1;
           }
         break;
@@ -82,30 +82,32 @@ void switchPlates() {
 
     // do outputs if change happened
     if (doChange == 1) {
-      if (switchPlateBehavior[0] != cv_switch) {
         if (switchPlateStatus[0] == 0) {
           switch0low;
-          switch0cv = 0;
         }
 
         if (switchPlateStatus[0] == 1) {
           switch0high;
-          switch0cv = 254;
+        }
+      
+      if (switchPlateBehavior[1] != cv_switch) {
+        if (switchPlateStatus[1] == 0) {
+          //switch1low;
+          switch1cv = 254;
+        }
+        if (switchPlateStatus[1] == 1) {
+          //switch1high;
+          switch1cv = 0;
+
         }
       }
       else {
         //outputCV();
-        Serial.println(activeNote);
-        Serial.println(switch0cv);
+        //Serial.println(activeNote);
+        //Serial.println(switch1cv);
       }
-      
 
-      if (switchPlateStatus[1] == 0) {
-        switch1low;
-      }
-      if (switchPlateStatus[1] == 1) {
-        switch1high;
-      }
+
     }
   }
 }
