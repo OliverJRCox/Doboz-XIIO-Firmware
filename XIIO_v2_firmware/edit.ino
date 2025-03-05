@@ -73,12 +73,19 @@ void settings(int8_t vari) {
       // 1 -> trigger
       // 2 -> latching
       // 3 - > CV MODE WOO
+      // ...4?
 
-      switchPlateBehavior [1] = finibus ((switchPlateBehavior [1] + vari), 0, 3);
+      switchPlateBehavior [1] = finibus ((switchPlateBehavior [1] + vari), 0, 5);
       if (arpGlide && mode) {
         switchPlateBehavior [1] = 0;
       }
-      R = B1100 >> switchPlateBehavior[1];
+      if (switchPlateBehavior [1] > 3){
+        G = B1100 >> ( switchPlateBehavior[1] - 3);
+      }
+      else {
+        R = B1100 >> switchPlateBehavior[1];
+      }
+      
       break;
 
     case 9:

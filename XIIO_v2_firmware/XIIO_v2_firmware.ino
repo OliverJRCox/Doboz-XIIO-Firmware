@@ -61,7 +61,8 @@ uint8_t WB = B0000;
 #include "Adafruit_MPR121.h"
 Adafruit_MPR121 cap = Adafruit_MPR121();
 
-
+// Smoothing of Inputs
+#include <Smooth.h>
 
 // encoder
 bool encoderDirection = 0;
@@ -153,6 +154,8 @@ uint8_t switchPlateBehavior [] = {0, 0};
 #define trigger_switch 1
 #define latching_switch 2
 #define cv_switch 3
+#define cv_switch_Bmode 4
+#define cv_switch_Cmode 5
 bool switchPlateRead [] = {0, 0};
 bool switchPlateLast [] = {0, 0};
 bool switchPlateStatus [] = {0, 0};

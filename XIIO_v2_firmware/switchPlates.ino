@@ -71,6 +71,31 @@ void switchPlates() {
             doChange = 1;
           }
         break;
+
+
+        // CV switch B mode (currently the same as basic A mode)
+        case cv_switch_Bmode:
+          if (switchPlateRead[i] == 1) {
+            switch1cv = platesFilteredData[12];
+            doChange = 1;
+          }
+          else {
+            switch1cv = 255 - platesFilteredData[activeNote];
+            doChange = 1;
+          }
+        break;
+
+         // CV switch C mode (currrently the same as A mode)
+        case cv_switch_Cmode:
+          if (switchPlateRead[i] == 1) {
+            switch1cv = platesFilteredData[12];
+            doChange = 1;
+          }
+          else {
+            switch1cv = 255 - platesFilteredData[activeNote];
+            doChange = 1;
+          }
+        break;
     }
 
     // refresh LEDs if change happened
