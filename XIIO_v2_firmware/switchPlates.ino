@@ -62,27 +62,40 @@ void switchPlates() {
         // CV switch mode - addressing this with PWM. If switch is pressed, output CV 
         // directly from that key. If not, look for last key pressed on keyboard.
         case cv_switch:
+          Serial.println(activeNotePlates);
           if (switchPlateRead[i] == 1) {
-            switch1cv = platesFilteredData[12];
+            switch1cv = platesFilteredData[11];
+            doChange = 1;
+          }
+          else if (activeNotePlates == 0){
+            switch1cv = 255;
             doChange = 1;
           }
           else {
-            switch1cv = 255 - platesFilteredData[activeNote];
+            switch1cv = platesFilteredData[activeNote];
             doChange = 1;
           }
         break;
 
 
-        // CV switch B mode (currently the same as basic A mode)
+        // CV switch B mode (smoothed A mode)
         case cv_switch_Bmode:
+
+          if (platesLast != plates){
+            smoothedValue.reset(128);
+          }
+
           if (switchPlateRead[i] == 1) {
-            switch1cv = platesFilteredData[12];
+            smoothedValue.add(platesFilteredData[12]);
+            switch1cv = smoothedValue.get_avg();
             doChange = 1;
           }
           else {
-            switch1cv = 255 - platesFilteredData[activeNote];
+            smoothedValue.add(255 - platesFilteredData[activeNote]);
+            switch1cv = smoothedValue.get_avg();
             doChange = 1;
           }
+
         break;
 
          // CV switch C mode (currrently the same as A mode)
@@ -96,6 +109,8 @@ void switchPlates() {
             doChange = 1;
           }
         break;
+
+
     }
 
     // refresh LEDs if change happened
@@ -118,7 +133,7 @@ void switchPlates() {
       if (switchPlateBehavior[1] != cv_switch) {
         if (switchPlateStatus[1] == 0) {
           //switch1low;
-          switch1cv = 254;
+          switch1cv = 255;
         }
         if (switchPlateStatus[1] == 1) {
           //switch1high;
@@ -129,11 +144,11 @@ void switchPlates() {
       else {
         //outputCV();
         //Serial.println(activeNote);
-        //Serial.println(switch1cv);
       }
 
 
     }
   }
+
 }
 

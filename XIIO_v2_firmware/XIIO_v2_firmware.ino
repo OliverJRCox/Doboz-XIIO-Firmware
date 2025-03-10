@@ -64,6 +64,10 @@ Adafruit_MPR121 cap = Adafruit_MPR121();
 // Smoothing of Inputs
 #include <Smooth.h>
 
+#define SMOOTHED_SAMPLE_SIZE  1000
+
+Smooth  smoothedValue(SMOOTHED_SAMPLE_SIZE);
+
 // encoder
 bool encoderDirection = 0;
 #define encAPin 2 // PD2
@@ -328,6 +332,7 @@ void loop() {
   encoder();
   switchPlates();
   
+  Serial.println(switch1cv);
   analogWrite(6,switch1cv);
 
   switch (mode) {

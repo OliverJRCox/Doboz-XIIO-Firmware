@@ -79,7 +79,7 @@ void settings(int8_t vari) {
       if (arpGlide && mode) {
         switchPlateBehavior [1] = 0;
       }
-      if (switchPlateBehavior [1] > 3){
+      if (switchPlateBehavior [1] > 2){
         G = B1100 >> ( switchPlateBehavior[1] - 3);
       }
       else {
