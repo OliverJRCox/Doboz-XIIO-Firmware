@@ -62,7 +62,6 @@ void switchPlates() {
         // CV switch mode - addressing this with PWM. If switch is pressed, output CV 
         // directly from that key. If not, look for last key pressed on keyboard.
         case cv_switch:
-          Serial.println(activeNotePlates);
           if (switchPlateRead[i] == 1) {
             switch1cv = platesFilteredData[11];
             doChange = 1;
@@ -81,21 +80,18 @@ void switchPlates() {
         // CV switch B mode (smoothed A mode)
         case cv_switch_Bmode:
 
-          if (platesLast != plates){
-            smoothedValue.reset(128);
-          }
-
           if (switchPlateRead[i] == 1) {
-            smoothedValue.add(platesFilteredData[12]);
-            switch1cv = smoothedValue.get_avg();
-            doChange = 1;
+            smoothedValue.add(platesFilteredData[11]);
+          }
+          else if (activeNotePlates == 0){
+            smoothedValue.add(255);
           }
           else {
-            smoothedValue.add(255 - platesFilteredData[activeNote]);
-            switch1cv = smoothedValue.get_avg();
-            doChange = 1;
+            smoothedValue.add(platesFilteredData[activeNote]);
           }
-
+          switch1cv = smoothedValue.get_avg();
+          Serial.println(switch1cv);
+          doChange = 1;
         break;
 
          // CV switch C mode (currrently the same as A mode)

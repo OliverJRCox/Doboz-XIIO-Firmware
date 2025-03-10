@@ -64,7 +64,7 @@ Adafruit_MPR121 cap = Adafruit_MPR121();
 // Smoothing of Inputs
 #include <Smooth.h>
 
-#define SMOOTHED_SAMPLE_SIZE  1000
+#define SMOOTHED_SAMPLE_SIZE  100
 
 Smooth  smoothedValue(SMOOTHED_SAMPLE_SIZE);
 
