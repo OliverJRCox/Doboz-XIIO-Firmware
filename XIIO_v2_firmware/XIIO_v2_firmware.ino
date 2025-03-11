@@ -61,12 +61,6 @@ uint8_t WB = B0000;
 #include "Adafruit_MPR121.h"
 Adafruit_MPR121 cap = Adafruit_MPR121();
 
-// Smoothing of Inputs
-#include <Smooth.h>
-
-#define SMOOTHED_SAMPLE_SIZE  100
-
-Smooth  smoothedValue(SMOOTHED_SAMPLE_SIZE);
 
 // encoder
 bool encoderDirection = 0;
@@ -153,6 +147,8 @@ int16_t octave = 0;
 int16_t queuedOctave = 0;
 
 
+
+
 uint8_t switchPlateBehavior [] = {0, 0};
 #define momentary_switch 0
 #define trigger_switch 1
@@ -165,7 +161,23 @@ bool switchPlateLast [] = {0, 0};
 bool switchPlateStatus [] = {0, 0};
 uint32_t switchPlateTriggerTime [] = {0, 0};
 
+uint8_t filteredDataLowerBound = 80;
+uint8_t filteredDataMultiplier = 1.5;
 uint8_t platesFilteredData[12];
+
+// Smoothing of Inputs
+#include <Smooth.h>
+
+#define SMOOTHED_BMODE_SAMPLE_SIZE  50
+#define SMOOTHED_CMODE_SAMPLE_SIZE  1000
+
+
+Smooth  smoothedBValue(SMOOTHED_BMODE_SAMPLE_SIZE);
+Smooth  smoothedCValue(SMOOTHED_CMODE_SAMPLE_SIZE);
+
+
+
+
 
 uint16_t glideStop = 0;  // the note to which we are gliding
 uint16_t glideNote = 0;  // the current note, while gliding

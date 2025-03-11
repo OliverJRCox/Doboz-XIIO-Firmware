@@ -62,8 +62,10 @@ void switchPlates() {
         // CV switch mode - addressing this with PWM. If switch is pressed, output CV 
         // directly from that key. If not, look for last key pressed on keyboard.
         case cv_switch:
+          Serial.println("A MODE");
+
           if (switchPlateRead[i] == 1) {
-            switch1cv = platesFilteredData[11];
+            switch1cv = ((platesFilteredData[11]-filteredDataLowerBound)*filteredDataMultiplier);
             doChange = 1;
           }
           else if (activeNotePlates == 0){
@@ -71,7 +73,7 @@ void switchPlates() {
             doChange = 1;
           }
           else {
-            switch1cv = platesFilteredData[activeNote];
+            switch1cv = ((platesFilteredData[activeNote]-filteredDataLowerBound)*filteredDataMultiplier);
             doChange = 1;
           }
         break;
@@ -79,29 +81,38 @@ void switchPlates() {
 
         // CV switch B mode (smoothed A mode)
         case cv_switch_Bmode:
-
           if (switchPlateRead[i] == 1) {
-            smoothedValue.add(platesFilteredData[11]);
+            smoothedBValue.add((platesFilteredData[11]-filteredDataLowerBound)*filteredDataMultiplier);
+            switch1cv = smoothedBValue.get_avg();
+            doChange = 1;
           }
           else if (activeNotePlates == 0){
-            smoothedValue.add(255);
+            smoothedBValue.add(255);
+            switch1cv = smoothedBValue.get_avg();
+            doChange = 1;
           }
           else {
-            smoothedValue.add(platesFilteredData[activeNote]);
+            smoothedBValue.add((platesFilteredData[activeNote]-filteredDataLowerBound)*filteredDataMultiplier);
+            switch1cv = smoothedBValue.get_avg();
+            doChange = 1;
           }
-          switch1cv = smoothedValue.get_avg();
-          Serial.println(switch1cv);
-          doChange = 1;
         break;
 
          // CV switch C mode (currrently the same as A mode)
         case cv_switch_Cmode:
           if (switchPlateRead[i] == 1) {
-            switch1cv = platesFilteredData[12];
+            smoothedCValue.add((platesFilteredData[11]-filteredDataLowerBound)*filteredDataMultiplier);
+            switch1cv = smoothedCValue.get_avg();
+            doChange = 1;
+          }
+          else if (activeNotePlates == 0){
+            smoothedCValue.add(255);
+            switch1cv = smoothedCValue.get_avg();
             doChange = 1;
           }
           else {
-            switch1cv = 255 - platesFilteredData[activeNote];
+            smoothedCValue.add((platesFilteredData[activeNote]-filteredDataLowerBound)*filteredDataMultiplier);
+            switch1cv = smoothedCValue.get_avg();
             doChange = 1;
           }
         break;
@@ -126,7 +137,7 @@ void switchPlates() {
           switch0high;
         }
       
-      if (switchPlateBehavior[1] != cv_switch) {
+      if (switchPlateBehavior[1] <= 2) {
         if (switchPlateStatus[1] == 0) {
           //switch1low;
           switch1cv = 255;
