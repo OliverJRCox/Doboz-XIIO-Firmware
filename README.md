@@ -1,5 +1,5 @@
 Hi folks, this is an edit of the firmware for the Doboz XIIO - adding a kind of CV mode to the Switch 2 output. 
-It's basically raw unfiltered PWM from the capacitative data coming off the MPR121 chip, so please expect weirdness unless you manually filter it outside of this. 
+It's basically raw unfiltered PWM from the capacitative data coming off the MPR121 chip, so please expect raw PWM unless you manually filter it in hardware. 
 Sadly this is Github, and I can't code for you adding an RC pair to the Switch 2 output. 
 
 The good news is that raw, unfiltered PWM actually sounds great and does weird shit as a modulation source, so consider this a gift in hardware form for anyone who likes creepy noises. 
