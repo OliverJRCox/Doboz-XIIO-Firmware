@@ -161,7 +161,7 @@ bool switchPlateLast [] = {0, 0};
 bool switchPlateStatus [] = {0, 0};
 uint32_t switchPlateTriggerTime [] = {0, 0};
 
-uint8_t filteredDataLowerBound = 80;
+uint8_t filteredDataLowerBound = 60;
 uint8_t filteredDataMultiplier = 1.5;
 uint8_t platesFilteredData[12];
 
